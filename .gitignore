@@ -2,3 +2,8 @@
 *.zip
 .idea/
 .vscode/
+.agents/
+.cursor/skills/
+.claude/skills/
+.codex/skills/
+skills-lock.json

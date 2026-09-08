@@ -4,26 +4,28 @@ Cursor / Codex skill for drafting DataOS `type: nilus` pipelines and custom sour
 
 ## Install
 
-```bash
-# this project → .cursor/skills/nilus-pipelines  (so you can @nilus-pipelines)
-curl -fsSL https://raw.githubusercontent.com/darpanvyas-tmdc/nilus-pipelines/main/scripts/install-cursor.sh | bash
+`npx skills` copies this whole folder (`SKILL.md`, `references/`, `templates/`).
 
-# all Cursor projects → ~/.cursor/skills/nilus-pipelines
-curl -fsSL https://raw.githubusercontent.com/darpanvyas-tmdc/nilus-pipelines/main/scripts/install-cursor.sh | bash -s -- -g
+```bash
+npx skills add darpanvyas-tmdc/nilus-pipelines --list
+npx skills add darpanvyas-tmdc/nilus-pipelines -a cursor -y
+npx skills add darpanvyas-tmdc/nilus-pipelines -g -a cursor -y
 ```
 
-Ask the agent something like: “Draft a Nilus batch pipeline from Postgres depot X to lakehouse Y” or attach `@nilus-pipelines`.
+Ask the agent: “Draft a Nilus batch pipeline from Postgres depot X to lakehouse Y” or attach `@nilus-pipelines`.
 
-## Layout
+## Standard template
 
 ```text
 nilus-pipelines/
-├── SKILL.md                 # entry point — always read first
+├── SKILL.md                 # required — always read first
+├── README.md
 ├── references/              # extra context, loaded on demand
 │   ├── domain.md
 │   ├── options.md
 │   └── custom-source.md
 └── templates/               # copy-paste starters
+    ├── README.md
     ├── *.yml
     └── custom-source.py
 ```
