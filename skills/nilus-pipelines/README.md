@@ -7,7 +7,7 @@ Cursor / Codex skill for drafting DataOS `type: nilus` pipelines and custom sour
 From the project root:
 
 ```bash
-npx nilus-pipelines
+npx --yes github:darpanvyas-tmdc/nilus-pipelines
 ```
 
 Pick **1  Cursor** to write `.cursor/skills/nilus-pipelines/` (full folder: `SKILL.md`, `references/`, `templates/`).
@@ -15,7 +15,7 @@ Pick **1  Cursor** to write `.cursor/skills/nilus-pipelines/` (full folder: `SKI
 Cursor only, no prompt:
 
 ```bash
-npx nilus-pipelines cursor
+npx --yes github:darpanvyas-tmdc/nilus-pipelines cursor
 ```
 
 Ask the agent: “Draft a Nilus batch pipeline from Postgres depot X to lakehouse Y” or attach `@nilus-pipelines`.

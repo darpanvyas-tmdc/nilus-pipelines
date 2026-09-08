@@ -6,15 +6,17 @@ Run a single command to scaffold the skill into **Cursor**, **Claude Code**, **C
 
 ## Usage
 
-```bash
-npx nilus-pipelines
-```
-
-Until this branch is on npm / `main`, run it from GitHub:
+From the project root (not published to npm yet — run it from GitHub):
 
 ```bash
-npx --yes github:darpanvyas-tmdc/nilus-pipelines#npx-only-standard-skill-template
+# interactive — pick Cursor / Claude / Codex / VS Code
+npx --yes github:darpanvyas-tmdc/nilus-pipelines
+
+# Cursor only, no menu → .cursor/skills/nilus-pipelines
+npx --yes github:darpanvyas-tmdc/nilus-pipelines cursor
 ```
+
+When the package is on npm, the same flow is `npx nilus-pipelines` / `npx nilus-pipelines cursor`.
 
 This launches an interactive prompt for which IDE(s) to install into:
 
