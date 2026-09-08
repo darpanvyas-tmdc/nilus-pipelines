@@ -5,11 +5,14 @@ Cursor / Codex skill for drafting DataOS `type: nilus` pipelines and custom sour
 ## Install
 
 ```bash
-npx skills add darpanvyas-tmdc/nilus-pipelines -a cursor -y
-npx skills add darpanvyas-tmdc/nilus-pipelines -g -a cursor -y
+# this project → .cursor/skills/nilus-pipelines  (so you can @nilus-pipelines)
+curl -fsSL https://raw.githubusercontent.com/darpanvyas-tmdc/nilus-pipelines/main/scripts/install-cursor.sh | bash
+
+# all Cursor projects → ~/.cursor/skills/nilus-pipelines
+curl -fsSL https://raw.githubusercontent.com/darpanvyas-tmdc/nilus-pipelines/main/scripts/install-cursor.sh | bash -s -- -g
 ```
 
-Ask the agent something like: “Draft a Nilus batch pipeline from Postgres depot X to lakehouse Y” or “Write a custom source for this API.”
+Ask the agent something like: “Draft a Nilus batch pipeline from Postgres depot X to lakehouse Y” or attach `@nilus-pipelines`.
 
 ## Layout
 

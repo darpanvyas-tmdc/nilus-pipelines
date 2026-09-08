@@ -2,38 +2,34 @@
 
 Cursor / Codex / agent skill for drafting DataOS `type: nilus` pipelines and custom sources.
 
-Install with [`npx skills add`](https://github.com/vercel-labs/skills). After testers shake it out, a cleaned-up version can fold into DataOS **builder skills**.
+Install into **`.cursor/skills/`** so you can `@nilus-pipelines` in chat. After testers shake it out, a cleaned-up version can fold into DataOS **builder skills**.
 
-## Install
+## Install (Cursor)
 
-```bash
-# Cursor — this project
-npx skills add darpanvyas-tmdc/nilus-pipelines -a cursor -y
-
-# Cursor — all projects
-npx skills add darpanvyas-tmdc/nilus-pipelines -g -a cursor -y
-
-# Cursor + Codex
-npx skills add darpanvyas-tmdc/nilus-pipelines -a cursor -a codex -y
-
-# Interactive (pick agents yourself)
-npx skills add darpanvyas-tmdc/nilus-pipelines
-```
-
-List skills in this repo without installing:
+These write to Cursor’s skill folder, not `.agents/`.
 
 ```bash
-npx skills add darpanvyas-tmdc/nilus-pipelines --list
+# this project → .cursor/skills/nilus-pipelines
+curl -fsSL https://raw.githubusercontent.com/darpanvyas-tmdc/nilus-pipelines/main/scripts/install-cursor.sh | bash
+
+# all Cursor projects → ~/.cursor/skills/nilus-pipelines
+curl -fsSL https://raw.githubusercontent.com/darpanvyas-tmdc/nilus-pipelines/main/scripts/install-cursor.sh | bash -s -- -g
 ```
 
 Do not put the skill in `~/.cursor/skills-cursor/` (reserved for Cursor built-ins).
 
-Ask the agent something like: “Draft a Nilus batch pipeline from Postgres depot X to lakehouse Y” or “Write a custom source for this API.”
+In chat, type `@nilus-pipelines` (or ask: “Draft a Nilus batch pipeline from Postgres depot X to lakehouse Y”).
 
-## Update
+## Optional: `npx skills add`
+
+The skills CLI still discovers this repo. At **project** scope, `-a cursor` installs to `.agents/skills/` (a CLI default). Prefer the Cursor script above if you want `@` mentions.
 
 ```bash
-npx skills update nilus-pipelines
+# list skills in this repo
+npx skills add darpanvyas-tmdc/nilus-pipelines --list
+
+# all projects — this one does land in ~/.cursor/skills
+npx skills add darpanvyas-tmdc/nilus-pipelines -g -a cursor -y
 ```
 
 ## Layout
@@ -41,9 +37,11 @@ npx skills update nilus-pipelines
 ```text
 .
 ├── README.md
+├── scripts/
+│   └── install-cursor.sh        # writes .cursor/skills/nilus-pipelines
 └── skills/
     └── nilus-pipelines/         # discovered by `npx skills add`
-        ├── SKILL.md             # entry point
+        ├── SKILL.md
         ├── README.md
         ├── references/
         └── templates/
