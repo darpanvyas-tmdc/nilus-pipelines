@@ -1,0 +1,27 @@
+{
+  "name": "nilus-pipelines",
+  "version": "1.0.0",
+  "description": "Agent skill for drafting DataOS type: nilus pipelines and custom sources. Run npx nilus-pipelines to scaffold .cursor/skills into your project.",
+  "bin": {
+    "nilus-pipelines": "./bin/create.js"
+  },
+  "files": [
+    "bin/",
+    "skills/"
+  ],
+  "keywords": [
+    "cursor",
+    "cursor-skills",
+    "nilus",
+    "dataos",
+    "pipeline"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=16"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/darpanvyas-tmdc/nilus-pipelines"
+  }
+}

@@ -4,13 +4,19 @@ Cursor / Codex skill for drafting DataOS `type: nilus` pipelines and custom sour
 
 ## Install
 
-`npx skills` copies this whole folder (`SKILL.md`, `references/`, `templates/`). Run it without flags so you can pick **Cursor**, **Claude Code**, etc.:
+From the project root:
 
 ```bash
-npx skills add darpanvyas-tmdc/nilus-pipelines
+npx nilus-pipelines
 ```
 
-Cursor lands in `.agents/skills/` (Cursor’s mapped path). Claude Code lands in `.claude/skills/`.
+Pick **1  Cursor** to write `.cursor/skills/nilus-pipelines/` (full folder: `SKILL.md`, `references/`, `templates/`).
+
+Cursor only, no prompt:
+
+```bash
+npx nilus-pipelines cursor
+```
 
 Ask the agent: “Draft a Nilus batch pipeline from Postgres depot X to lakehouse Y” or attach `@nilus-pipelines`.
 
@@ -18,13 +24,13 @@ Ask the agent: “Draft a Nilus batch pipeline from Postgres depot X to lakehous
 
 ```text
 nilus-pipelines/
-├── SKILL.md                 # required — always read first
+├── SKILL.md
 ├── README.md
-├── references/              # extra context, loaded on demand
+├── references/
 │   ├── domain.md
 │   ├── options.md
 │   └── custom-source.md
-└── templates/               # copy-paste starters
+└── templates/
     ├── README.md
     ├── *.yml
     └── custom-source.py

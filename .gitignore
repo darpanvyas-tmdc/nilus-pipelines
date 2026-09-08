@@ -2,8 +2,12 @@
 *.zip
 .idea/
 .vscode/
+node_modules/
+*.tgz
 .agents/
 .cursor/skills/
 .claude/skills/
 .codex/skills/
+.github/skills/
 skills-lock.json
+try/

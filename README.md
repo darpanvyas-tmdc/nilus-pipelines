@@ -2,88 +2,92 @@
 
 Cursor / Codex / agent skill for drafting DataOS `type: nilus` pipelines and custom sources.
 
-Install with **`npx skills` only**. Run it **without** `-y` / `-a` so the CLI asks you to pick agents (Cursor, Claude Code, Codex, …). It then copies the full package (`SKILL.md`, `references/`, `templates/`).
+Run a single command to scaffold the skill into **Cursor**, **Claude Code**, **Codex**, or **VS Code (Copilot)**. Cursor gets `.cursor/skills/` so you can `@nilus-pipelines`.
 
-## Install
-
-```bash
-npx skills add darpanvyas-tmdc/nilus-pipelines
-```
-
-Until this branch is merged, point at the branch:
+## Usage
 
 ```bash
-npx skills add https://github.com/darpanvyas-tmdc/nilus-pipelines/tree/npx-only-standard-skill-template
+npx nilus-pipelines
 ```
 
-The prompt lets you:
-
-1. Confirm the `nilus-pipelines` skill
-2. Choose agents — **Cursor**, **Claude Code**, and any others it detects
-3. Choose project vs global
-4. Choose symlink (default) vs copy
-
-Where each pick writes:
-
-| You select | Project folder |
-|---|---|
-| Cursor | `.agents/skills/nilus-pipelines` |
-| Claude Code | `.claude/skills/nilus-pipelines` |
-| Both | both of the above (Cursor still uses `.agents`, not `.cursor`) |
-
-Cursor reads `.agents/skills` on purpose — that is the CLI mapping for Cursor, so `@nilus-pipelines` works from there. Claude reads `.claude/skills`.
-
-Skip the menu only when you already know the target:
+Until this branch is on npm / `main`, run it from GitHub:
 
 ```bash
-npx skills add darpanvyas-tmdc/nilus-pipelines --list
-npx skills add darpanvyas-tmdc/nilus-pipelines -a cursor -y
-npx skills add darpanvyas-tmdc/nilus-pipelines -a claude-code -y
-npx skills add darpanvyas-tmdc/nilus-pipelines -g -a cursor -a claude-code -y
-npx skills add darpanvyas-tmdc/nilus-pipelines --all
+npx --yes github:darpanvyas-tmdc/nilus-pipelines#npx-only-standard-skill-template
 ```
 
-After install, type `@nilus-pipelines` in chat (or ask: “Draft a Nilus batch pipeline from Postgres depot X to lakehouse Y”).
+This launches an interactive prompt for which IDE(s) to install into:
+
+```
+nilus-pipelines — scaffolding skills
+
+Which IDE(s) are you using? (comma-separated for multiple, e.g. 1,2)
+
+  1  Cursor
+  2  Claude Code
+  3  Codex
+  4  VS Code (Copilot)
+  5  All
+
+Enter number(s) (1–5):
+```
+
+Skip the menu by passing the IDE as an argument:
+
+```bash
+npx nilus-pipelines cursor
+npx nilus-pipelines claude
+npx nilus-pipelines 1,2
+```
+
+## What gets installed
+
+```
+.cursor/skills/                 ← Cursor (if you chose 1 or All)
+  nilus-pipelines/
+    SKILL.md
+    README.md
+    references/
+    templates/
+.claude/skills/                 ← Claude Code (if you chose 2 or All)
+  nilus-pipelines/
+    …
+.codex/skills/                  ← Codex (if you chose 3 or All)
+  nilus-pipelines/
+    …
+.github/skills/                 ← VS Code / GitHub Copilot (if you chose 4 or All)
+  nilus-pipelines/
+    …
+```
 
 Do not put the skill in `~/.cursor/skills-cursor/` (reserved for Cursor built-ins).
 
-## Standard skill template
+## What the skill does
 
-This repo follows the Agent Skills layout. `npx skills add` discovers `skills/<name>/SKILL.md` and installs **every file and folder** in that package:
+Drafts DataOS `type: nilus` YAML and CustomSource Python connectors. Use when creating, fixing, or reviewing a Nilus pipeline, custom source, masking, type hints, CDC, metadata, or depot/URI addresses.
+
+**Trigger**: type `@nilus-pipelines` or ask *"Draft a Nilus batch pipeline from Postgres depot X to lakehouse Y"*.
+
+## Layout
 
 ```text
 .
+├── bin/create.js                # npx installer — copies into .cursor/skills etc.
+├── package.json
 ├── README.md
 └── skills/
     └── nilus-pipelines/
-        ├── SKILL.md                 # required — entry point
+        ├── SKILL.md
         ├── README.md
-        ├── references/              # loaded on demand
+        ├── references/
         │   ├── domain.md
         │   ├── options.md
         │   └── custom-source.md
-        └── templates/               # copy-paste YAML / Python starters
-            ├── README.md
-            ├── batch-depot.yml
-            ├── batch-uri.yml
-            ├── batch-schema-naming.yml
-            ├── batch-merge.yml
-            ├── batch-type-hints.yml
-            ├── batch-mask.yml
-            ├── batch-sample.yml
-            ├── batch-partition.yml
-            ├── batch-query-rename.yml
-            ├── batch-jira.yml
-            ├── batch-scheduled.yml
-            ├── batch-pvc.yml
-            ├── volume.yml
-            ├── cdc-postgres.yml
-            ├── cdc-mongo.yml
-            ├── cdc-db2-uri.yml
-            ├── metadata.yml
-            ├── custom-source-pipeline.yml
-            ├── custom-source.py
-            └── git-sync-secret.yml
+        └── templates/
+            ├── *.yml
+            └── custom-source.py
 ```
 
-That matches the public spec: `SKILL.md` plus optional `references/` and extra resource dirs (`templates/` here, same role as `assets/`).
+## Requirements
+
+- Node.js ≥ 16
